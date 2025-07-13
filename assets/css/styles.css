@@ -238,3 +238,157 @@ body {
 .btn-sm .fas {
   margin-right: 4px;
 }
+
+/* ===== MELHORIAS PARA DISPOSITIVOS MÓVEIS ===== */
+@media (max-width: 768px) {
+  /* Melhor posicionamento do datalist no mobile */
+  .modal-body {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Ajustar input para não sobrepor com o datalist */
+  #selectPersonToAdd {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Container específico para o campo de seleção */
+  .person-select-container {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  /* Espaçamento extra para evitar sobreposição */
+  .person-select-container .form-label {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Ajustar altura mínima do modal no mobile */
+  .modal-dialog {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+
+  .modal-content {
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+
+  /* Melhor espaçamento nos cards do cronograma */
+  .col-md-3 {
+    margin-bottom: 1rem;
+  }
+
+  /* Ajustar scrollbars para touch */
+  .drop-zone {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .people-list-container {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ===== TOM SELECT CUSTOMIZAÇÃO ===== */
+.ts-wrapper {
+  border-radius: 6px;
+}
+
+.ts-wrapper.single .ts-control {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  min-height: calc(1.5em + 0.75rem + 2px);
+  appearance: none;
+}
+
+.ts-wrapper.single .ts-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.ts-wrapper.single .ts-control .ts-input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #212529;
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  width: 100% !important;
+}
+
+.ts-wrapper.single .ts-control .ts-input::placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+.ts-wrapper.single.focus .ts-control {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.ts-wrapper.single.focus .ts-control .ts-input::placeholder {
+  opacity: 0;
+}
+
+.ts-dropdown {
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1060;
+  margin-top: 1px;
+}
+
+.ts-dropdown .option {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  color: #212529;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.ts-dropdown .option:hover {
+  background-color: #f8f9fa;
+}
+
+.ts-dropdown .option.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.ts-wrapper.plugin-clear_button .clear-button {
+  background: none;
+  border: 0;
+  color: #6c757d;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.ts-wrapper.plugin-clear_button .clear-button:hover {
+  color: #495057;
+}

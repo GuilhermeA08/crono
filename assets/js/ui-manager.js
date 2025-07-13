@@ -303,14 +303,43 @@ class UIManager {
     );
     availablePeople.sort((a, b) => a.name.localeCompare(b.name));
 
-    // Preencher datalist
-    const datalist = document.getElementById("peopleOptions");
-    datalist.innerHTML = "";
+    // Destruir Tom Select anterior se existir
+    const selectElement = document.getElementById("selectPersonToAdd");
+    if (selectElement.tomselect) {
+      selectElement.tomselect.destroy();
+    }
+
+    // Limpar e preencher opções do select
+    selectElement.innerHTML =
+      '<option value="">-- Selecione uma pessoa --</option>';
+
     availablePeople.forEach((person) => {
       const option = document.createElement("option");
-      option.value = person.name;
-      option.dataset.id = person.id;
-      datalist.appendChild(option);
+      option.value = person.id;
+      option.textContent = person.name;
+      selectElement.appendChild(option);
+    });
+
+    // Inicializar Tom Select
+    new TomSelect("#selectPersonToAdd", {
+      create: false,
+      sortField: "text",
+      placeholder: "Digite o nome da pessoa...",
+      searchField: ["text"],
+      persist: false,
+      allowEmptyOption: false,
+      closeAfterSelect: true,
+      hideSelected: false,
+      maxOptions: null,
+      plugins: ["clear_button"],
+      onFocus: function () {
+        this.control_input.placeholder = "";
+      },
+      onBlur: function () {
+        if (!this.getValue()) {
+          this.control_input.placeholder = "Digite o nome da pessoa...";
+        }
+      },
     });
 
     // Preencher select de funções
@@ -323,9 +352,6 @@ class UIManager {
       option.textContent = role;
       selectRole.appendChild(option);
     });
-
-    // Limpar input
-    document.getElementById("selectPersonToAdd").value = "";
 
     return availablePeople.length > 0;
   }

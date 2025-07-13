@@ -268,13 +268,11 @@ class ScheduleManager {
   }
 
   savePersonToDay() {
-    const personName = document
-      .getElementById("selectPersonToAdd")
-      .value.trim();
+    const personId = document.getElementById("selectPersonToAdd").value.trim();
     const roleSelected = document.getElementById("selectRoleForPerson").value;
 
-    if (!personName) {
-      this.uiManager.showAlert("Digite ou selecione uma pessoa");
+    if (!personId) {
+      this.uiManager.showAlert("Selecione uma pessoa");
       return;
     }
 
@@ -283,14 +281,10 @@ class ScheduleManager {
       return;
     }
 
-    const person = this.people.find(
-      (p) => p.name.toLowerCase() === personName.toLowerCase()
-    );
+    const person = this.people.find((p) => p.id === personId);
 
     if (!person) {
-      this.uiManager.showAlert(
-        "Pessoa não encontrada. Verifique o nome digitado."
-      );
+      this.uiManager.showAlert("Pessoa não encontrada. Tente novamente.");
       return;
     }
 
