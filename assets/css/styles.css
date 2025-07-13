@@ -1,0 +1,348 @@
+/* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
+body {
+  font-family: "Inter", sans-serif;
+  background: #f8f9fa;
+  padding-top: 20px;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+/* ===== COMPONENTES DE CARD ===== */
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  background: #fff;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card-header {
+  background: #007bff;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== ZONA DE DROP ===== */
+.drop-zone {
+  min-height: 100px;
+  border: 2px dashed #ced4da;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+  background: #f1f3f5;
+  transition: all 0.3s;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.drop-zone.drag-over {
+  background: #d1e7dd;
+  border-color: #28a745;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+}
+
+/* ===== SCROLL PERSONALIZADO PARA DROP-ZONE ===== */
+.drop-zone::-webkit-scrollbar {
+  width: 6px;
+}
+
+.drop-zone::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.drop-zone::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.drop-zone::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ===== ITENS DE PESSOA ===== */
+.person-item {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: grab;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.person-item:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.person-item:active {
+  cursor: grabbing;
+}
+
+.person-item .person-header {
+  padding: 6px 10px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.person-item .person-body {
+  padding: 6px 10px;
+  font-size: 0.9em;
+  background: #f8f9fa;
+  color: #495057;
+}
+
+/* ===== CORES DAS FUNÇÕES (ROLES) ===== */
+.role-transmissao {
+  background: #28a745;
+}
+
+.role-fotos {
+  background: #fd7e14;
+}
+
+.role-transmisso {
+  background: #28a745;
+}
+
+.role-foto {
+  background: #fd7e14;
+}
+
+.role-som {
+  background: #17a2b8;
+}
+
+.role-iluminacao {
+  background: #ffc107;
+  color: #212529;
+}
+
+.role-camera {
+  background: #6f42c1;
+}
+
+.role-edicao {
+  background: #e83e8c;
+}
+
+.role-direcao {
+  background: #20c997;
+}
+
+.role-producao {
+  background: #fd7e14;
+}
+
+/* Cor padrão para funções não mapeadas */
+.role- {
+  background: #6c757d;
+}
+
+/* ===== BOTÕES DE REMOÇÃO ===== */
+.remove-person-from-day,
+.remove-day-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.remove-person-from-day:hover,
+.remove-day-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* ===== LISTA DE PESSOAS ===== */
+.people-list-container {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+
+.people-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.people-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.people-list-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.people-list-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ===== CORES PARA DIFERENTES PERÍODOS ===== */
+.period-manha .card-header {
+  background: #28a745; /* Verde para manhã */
+}
+
+.period-tarde .card-header {
+  background: #fd7e14; /* Laranja para tarde */
+}
+
+.period-noite .card-header {
+  background: #6f42c1; /* Roxo para noite */
+}
+
+.period-diatodo .card-header {
+  background: #007bff; /* Azul para dia todo */
+}
+
+/* ===== ESTILOS PARA IMPRESSÃO ===== */
+@media print {
+  @page {
+    size: landscape;
+    margin: 5mm;
+  }
+
+  /* Ocultar cabeçalho e rodapé do navegador */
+  @page {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  body {
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .container {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 5px !important;
+  }
+
+  /* Ocultar informações do navegador */
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Remover espaços desnecessários */
+  * {
+    box-sizing: border-box !important;
+  }
+
+  h1 {
+    color: #000 !important;
+    font-size: 24px !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+  }
+
+  .btn,
+  .text-center.mb-4,
+  .row.mb-4 {
+    display: none !important;
+  }
+
+  .card {
+    box-shadow: none !important;
+    border: 2px solid #333 !important;
+    margin-bottom: 15px !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .card-header {
+    color: white !important;
+    padding: 10px !important;
+    font-weight: bold !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .person-item {
+    margin-bottom: 5px !important;
+    border: 1px solid #333 !important;
+    break-inside: avoid !important;
+  }
+
+  .person-header {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    padding: 5px 8px !important;
+    color: white !important;
+    font-weight: bold !important;
+  }
+
+  .person-body {
+    padding: 5px 8px !important;
+    background: #f8f9fa !important;
+    font-size: 12px !important;
+  }
+
+  .remove-person-from-day,
+  .remove-day-btn,
+  .edit-day-btn,
+  .add-person-to-day-btn {
+    display: none !important;
+  }
+
+  .drop-zone {
+    border: none !important;
+    background: white !important;
+    padding: 8px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .col-md-3 {
+    width: 23% !important;
+    display: inline-block !important;
+    vertical-align: top !important;
+    margin-bottom: 30px !important;
+    margin-right: 2% !important;
+  }
+
+  #scheduleDaysContainer {
+    column-count: 4 !important;
+    column-gap: 15px !important;
+  }
+
+  /* Quebra de página a cada 4 cards (1 linha de 4) */
+  .col-md-3:nth-child(4n + 1) {
+    page-break-before: always !important;
+  }
+
+  /* Cores específicas para impressão */
+  .period-manha .card-header {
+    background: #28a745 !important;
+  }
+  .period-tarde .card-header {
+    background: #fd7e14 !important;
+  }
+  .period-noite .card-header {
+    background: #6f42c1 !important;
+  }
+  .period-diatodo .card-header {
+    background: #007bff !important;
+  }
+}
