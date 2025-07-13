@@ -411,7 +411,7 @@ class ScheduleManager {
     this.renderAll();
   }
 
-  // Exportação e impressão
+  // Exportação
   exportToPDF() {
     const btn = document.getElementById("exportPdfBtn");
     const originalText = btn.innerHTML;
@@ -429,28 +429,80 @@ class ScheduleManager {
     }
   }
 
-  print() {
-    if (this.scheduleDays.length === 0) {
-      this.uiManager.showAlert(
-        "Não há dados para imprimir. Adicione dias ao cronograma primeiro."
-      );
+  // Limpar dados seletivamente
+  clearSelectedData() {
+    const clearPeople = document.getElementById("clearPeople").checked;
+    const clearDays = document.getElementById("clearDays").checked;
+    const clearRoles = document.getElementById("clearRoles").checked;
+    const clearAllocations =
+      document.getElementById("clearAllocations").checked;
+
+    // Verificar se pelo menos uma opção foi selecionada
+    if (!clearPeople && !clearDays && !clearRoles && !clearAllocations) {
+      this.uiManager.showAlert("Selecione pelo menos uma opção para limpar.");
       return;
     }
-    window.print();
-  }
 
-  // Limpar dados
-  clearAllData() {
-    this.people = [];
-    this.scheduleDays = [];
-    this.roles = ["Transmissão", "Fotos"];
-    this.roleColors = { Transmissão: "#28a745", Fotos: "#fd7e14" };
+    let deletedItems = [];
 
-    this.dataManager.clearAllData();
+    // Limpar apenas alocações (sem remover pessoas ou dias)
+    if (clearAllocations && !clearPeople && !clearDays) {
+      this.scheduleDays.forEach((day) => {
+        day.allocatedPeople = [];
+      });
+      deletedItems.push("alocações");
+    } else {
+      // Limpar pessoas
+      if (clearPeople) {
+        this.people = [];
+        // Remover pessoas das alocações também
+        this.scheduleDays.forEach((day) => {
+          day.allocatedPeople = [];
+        });
+        deletedItems.push("pessoas");
+      }
+
+      // Limpar dias
+      if (clearDays) {
+        this.scheduleDays = [];
+        deletedItems.push("dias do cronograma");
+      }
+
+      // Limpar funções (mantendo as padrão)
+      if (clearRoles) {
+        this.roles = ["Transmissão", "Fotos"];
+        this.roleColors = { Transmissão: "#28a745", Fotos: "#fd7e14" };
+
+        // Atualizar funções das pessoas alocadas para as padrão
+        this.scheduleDays.forEach((day) => {
+          day.allocatedPeople.forEach((person) => {
+            if (!this.roles.includes(person.role)) {
+              person.role = this.roles[0];
+            }
+          });
+        });
+        deletedItems.push("funções personalizadas");
+      }
+    }
+
     this.save();
     this.renderAll();
 
-    this.uiManager.showAlert("Todos os dados foram removidos com sucesso!");
+    const message =
+      deletedItems.length > 0
+        ? `${deletedItems.join(", ")} removido(s) com sucesso!`
+        : "Nenhum dado foi removido.";
+
+    this.uiManager.showAlert(message);
+  }
+
+  // Configurar modal de limpeza
+  setupClearModal() {
+    // Resetar checkboxes para o estado padrão
+    document.getElementById("clearPeople").checked = true;
+    document.getElementById("clearDays").checked = true;
+    document.getElementById("clearRoles").checked = true;
+    document.getElementById("clearAllocations").checked = false;
   }
 
   // Event Listeners
@@ -491,16 +543,50 @@ class ScheduleManager {
 
     // Exportação e limpeza
     document.getElementById("exportPdfBtn").onclick = () => this.exportToPDF();
-    document.getElementById("printBtn").onclick = () => this.print();
     document.getElementById("clearAllBtn").onclick = () => {
+      this.setupClearModal();
       new bootstrap.Modal(document.getElementById("confirmClearModal")).show();
     };
     document.getElementById("confirmClearBtn").onclick = () => {
-      this.clearAllData();
+      this.clearSelectedData();
       bootstrap.Modal.getInstance(
         document.getElementById("confirmClearModal")
       ).hide();
     };
+
+    // Controles do modal de limpeza
+    document.getElementById("selectAllBtn").onclick = () => {
+      document.getElementById("clearPeople").checked = true;
+      document.getElementById("clearDays").checked = true;
+      document.getElementById("clearRoles").checked = true;
+      document.getElementById("clearAllocations").checked = false;
+    };
+
+    document.getElementById("selectNoneBtn").onclick = () => {
+      document.getElementById("clearPeople").checked = false;
+      document.getElementById("clearDays").checked = false;
+      document.getElementById("clearRoles").checked = false;
+      document.getElementById("clearAllocations").checked = false;
+    };
+
+    // Lógica para exclusão mútua entre "clearAllocations" e outros
+    document
+      .getElementById("clearAllocations")
+      .addEventListener("change", (e) => {
+        if (e.target.checked) {
+          document.getElementById("clearPeople").checked = false;
+          document.getElementById("clearDays").checked = false;
+          document.getElementById("clearRoles").checked = false;
+        }
+      });
+
+    ["clearPeople", "clearDays", "clearRoles"].forEach((id) => {
+      document.getElementById(id).addEventListener("change", (e) => {
+        if (e.target.checked) {
+          document.getElementById("clearAllocations").checked = false;
+        }
+      });
+    });
 
     // Enter para adicionar
     document

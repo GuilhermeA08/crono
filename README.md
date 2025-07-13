@@ -9,7 +9,7 @@ Um sistema web para gerenciar cronogramas de atividades e alocação de pessoas 
 - **Gerenciamento de Dias**: Crie cronogramas por data e período (Manhã, Tarde, Noite, Dia todo)
 - **Alocação de Pessoas**: Arraste e solte ou use o modal para alocar pessoas em dias específicos
 - **Exportação PDF**: Gere relatórios em PDF com layout profissional
-- **Impressão**: Imprima diretamente do navegador com formatação otimizada
+- **Limpeza Seletiva**: Remova dados específicos com opções personalizáveis
 - **Persistência Local**: Dados salvos automaticamente no navegador
 
 ## 🗂️ Estrutura do Projeto
@@ -50,9 +50,20 @@ crono/
    - Clique em "Adicionar"
 
 5. **Alocar Pessoas**:
+
    - **Arrastar e Soltar**: Arraste uma pessoa da lista para um dia
    - **Modal**: Clique no botão "+" em um dia para usar o modal de adição
    - **Mover**: Arraste pessoas entre diferentes dias
+
+6. **Limpeza Seletiva**:
+   - Clique em "Limpar Dados" na barra de ferramentas
+   - Selecione o que deseja remover com os checkboxes:
+     - **Pessoas**: Remove todas as pessoas e suas alocações
+     - **Dias**: Remove todos os dias do cronograma
+     - **Funções**: Remove funções personalizadas (mantém padrão)
+     - **Apenas Alocações**: Remove pessoas dos dias, mantendo cadastros
+   - Use "Marcar Todos" / "Desmarcar Todos" para facilitar a seleção
+   - Confirme a ação (irreversível)
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -112,6 +123,14 @@ A aplicação segue o padrão de separação de responsabilidades:
 - Cabeçalho e rodapé profissionais
 - Estatísticas automáticas
 - Quebra de página inteligente
+
+### Limpeza Seletiva de Dados
+
+- **Pessoas**: Remove todas as pessoas e suas alocações
+- **Dias**: Remove todos os dias do cronograma
+- **Funções**: Remove funções personalizadas (mantém padrão)
+- **Apenas Alocações**: Remove pessoas dos dias, mantendo pessoas e dias cadastrados
+- **Controles Inteligentes**: Opções mutuamente exclusivas e validação
 
 ### Responsividade
 

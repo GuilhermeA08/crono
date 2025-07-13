@@ -30,11 +30,8 @@
         <button id="exportPdfBtn" class="btn btn-outline-success me-2">
           <i class="fas fa-file-pdf"></i> Exportar para PDF
         </button>
-        <button id="printBtn" class="btn btn-outline-info me-2">
-          <i class="fas fa-print"></i> Imprimir
-        </button>
         <button id="clearAllBtn" class="btn btn-outline-danger">
-          <i class="fas fa-trash-alt"></i> Limpar Todos os Dados
+          <i class="fas fa-trash-alt"></i> Limpar Dados
         </button>
       </div>
 
@@ -252,26 +249,101 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title">Confirmar Limpeza</h5>
+            <h5 class="modal-title">Selecionar Dados para Limpar</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
-            <p><strong>Atenção!</strong> Esta ação irá remover:</p>
-            <ul>
-              <li>Todas as pessoas cadastradas</li>
-              <li>Todos os dias do cronograma</li>
-              <li>Todas as alocações de funções</li>
-            </ul>
-            <p>
-              Esta ação não pode ser desfeita. Tem certeza que deseja continuar?
-            </p>
+            <p><strong>Selecione o que deseja remover:</strong></p>
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="clearPeople"
+                checked
+              />
+              <label class="form-check-label" for="clearPeople">
+                <i class="fas fa-users text-primary me-2"></i>
+                <strong>Pessoas cadastradas</strong>
+                <small class="d-block text-muted"
+                  >Remove todas as pessoas e suas alocações</small
+                >
+              </label>
+            </div>
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="clearDays"
+                checked
+              />
+              <label class="form-check-label" for="clearDays">
+                <i class="fas fa-calendar text-success me-2"></i>
+                <strong>Dias do cronograma</strong>
+                <small class="d-block text-muted"
+                  >Remove todos os dias e alocações</small
+                >
+              </label>
+            </div>
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="clearRoles"
+                checked
+              />
+              <label class="form-check-label" for="clearRoles">
+                <i class="fas fa-tags text-warning me-2"></i>
+                <strong>Funções</strong>
+                <small class="d-block text-muted"
+                  >Remove funções (exceto as padrão)</small
+                >
+              </label>
+            </div>
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="clearAllocations"
+              />
+              <label class="form-check-label" for="clearAllocations">
+                <i class="fas fa-link text-info me-2"></i>
+                <strong>Apenas alocações</strong>
+                <small class="d-block text-muted"
+                  >Remove pessoas dos dias, mantendo pessoas e dias</small
+                >
+              </label>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">
+                <i class="fas fa-info-circle me-1"></i>
+                Esta ação não pode ser desfeita
+              </small>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary me-2"
+                  id="selectAllBtn"
+                >
+                  <i class="fas fa-check-square"></i> Marcar Todos
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                  id="selectNoneBtn"
+                >
+                  <i class="fas fa-square"></i> Desmarcar Todos
+                </button>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal">
               Cancelar
             </button>
             <button id="confirmClearBtn" class="btn btn-danger">
-              Sim, Limpar Tudo
+              <i class="fas fa-trash-alt me-1"></i>
+              Limpar Selecionados
             </button>
           </div>
         </div>

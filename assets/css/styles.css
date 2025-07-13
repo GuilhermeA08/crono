@@ -214,135 +214,27 @@ body {
   background: #007bff; /* Azul para dia todo */
 }
 
-/* ===== ESTILOS PARA IMPRESSÃO ===== */
-@media print {
-  @page {
-    size: landscape;
-    margin: 5mm;
-  }
+/* ===== ESTILOS DO MODAL DE LIMPEZA ===== */
+.form-check-label {
+  cursor: pointer;
+  width: 100%;
+}
 
-  /* Ocultar cabeçalho e rodapé do navegador */
-  @page {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+.form-check-label:hover {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 8px;
+  margin: -8px;
+}
 
-  body {
-    background: white !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
+.form-check-input:checked + .form-check-label {
+  color: #495057;
+}
 
-  .container {
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 5px !important;
-  }
+.modal-body hr {
+  margin: 1.5rem 0;
+}
 
-  /* Ocultar informações do navegador */
-  html {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* Remover espaços desnecessários */
-  * {
-    box-sizing: border-box !important;
-  }
-
-  h1 {
-    color: #000 !important;
-    font-size: 24px !important;
-    margin-bottom: 20px !important;
-    text-align: center !important;
-  }
-
-  .btn,
-  .text-center.mb-4,
-  .row.mb-4 {
-    display: none !important;
-  }
-
-  .card {
-    box-shadow: none !important;
-    border: 2px solid #333 !important;
-    margin-bottom: 15px !important;
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
-
-  .card-header {
-    color: white !important;
-    padding: 10px !important;
-    font-weight: bold !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  .person-item {
-    margin-bottom: 5px !important;
-    border: 1px solid #333 !important;
-    break-inside: avoid !important;
-  }
-
-  .person-header {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    padding: 5px 8px !important;
-    color: white !important;
-    font-weight: bold !important;
-  }
-
-  .person-body {
-    padding: 5px 8px !important;
-    background: #f8f9fa !important;
-    font-size: 12px !important;
-  }
-
-  .remove-person-from-day,
-  .remove-day-btn,
-  .edit-day-btn,
-  .add-person-to-day-btn {
-    display: none !important;
-  }
-
-  .drop-zone {
-    border: none !important;
-    background: white !important;
-    padding: 8px !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  .col-md-3 {
-    width: 23% !important;
-    display: inline-block !important;
-    vertical-align: top !important;
-    margin-bottom: 30px !important;
-    margin-right: 2% !important;
-  }
-
-  #scheduleDaysContainer {
-    column-count: 4 !important;
-    column-gap: 15px !important;
-  }
-
-  /* Quebra de página a cada 4 cards (1 linha de 4) */
-  .col-md-3:nth-child(4n + 1) {
-    page-break-before: always !important;
-  }
-
-  /* Cores específicas para impressão */
-  .period-manha .card-header {
-    background: #28a745 !important;
-  }
-  .period-tarde .card-header {
-    background: #fd7e14 !important;
-  }
-  .period-noite .card-header {
-    background: #6f42c1 !important;
-  }
-  .period-diatodo .card-header {
-    background: #007bff !important;
-  }
+.btn-sm .fas {
+  margin-right: 4px;
 }
